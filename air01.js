@@ -15,36 +15,33 @@ gars
 
 Afficher error et quitter le programme en cas de problèmes d’arguments.
 */
-//Récupère la string
-let myString = process.argv[2];
+
 //Gestion d'erreur d'argument
-if (!myString || !isNaN(parseInt(myString))) {
+if (!process.argv[2] || !isNaN(parseInt(process.argv[2]))) {
   console.log("error");
   process.exit();
 }
+//Récupère ma string
+let myString = process.argv[2].trim();
 
-//Fonction qui split ma string
+//Ma fonction qui split
 function split(string_à_couper, string_séparateur) {
-  let splitString = string_à_couper.split("");
   let currentString = "";
   let myArg = [];
-  console.log(splitString);
-  //Boucle tableau de mes lettres
-  for (let i = 0; i <= splitString.length; i++) {
-    currentString += splitString[i];
-    //Si on passe sur un espace dans mon tableau, on push le mot dans un tableau
-    if (splitString[i] == " ") {
+  //Boucle ma string
+  for (let i = 0; i < myString.length; i++) {
+    currentString += string_à_couper[i];
+    //Si rencontre un espace, tabulation, retour à la ligne alors push
+    if (string_à_couper[i] == " " || i == myString.length - 1) {
       myArg.push(currentString);
       currentString = "";
     }
-    //Code pour supprimer les undefined dans mon tableau
-    if (i == splitString.length) {
-      myArg.push(currentString.slice(0, -9));
-    }
   }
-  //Boucle pour écrire les arguments 1 par 1
+  //Boucle pour afficher le résultat
   for (let j = 0; j < myArg.length; j++) {
-    console.log(myArg[j]);
+    if (myArg[j] !== " ") {
+      console.log(myArg[j]);
+    }
   }
 }
 
