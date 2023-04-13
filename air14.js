@@ -24,60 +24,30 @@ fs.writeFile = remplacer le contenu d'un fichier
 fs.readFile = lire un fichier */
 
 ////🔴 test air01.js 🔴////
-
-const { exec } = require("child_process");
-const { error } = require("console");
-const { stdout, stderr } = require("process");
+const { execSync } = require("child_process");
 const chalk = require("chalk");
-const { syncBuiltinESMExports } = require("module");
-let successNumber = 0;
-
-exec("node air01.js 'salut les gars'", (error, stdout, stderr) => {
-  const resultatAttendu = [
-    `salut 
-les 
-gars
-`,
-  ];
-  let resultat = [];
-  resultat.push(stdout);
-
-  if (resultatAttendu[0] == resultat[0] || resultat[0] == "error\n") {
-    console.log(`air01 : ${chalk.green("success")}`);
-    successNumber += 1;
+let succès = 0;
+let nombreTest = 0;
+function metaExercice(epreuve, résultat_attendu, arguments) {
+  nombreTest += 1;
+  const output = [execSync(`${arguments}`).toString()];
+  if (output[0] == résultat_attendu[0] || output[0] == "error\n") {
+    succès += 1;
+    console.log(`${epreuve} : ${chalk.green("success")}`);
   } else {
-    console.log(`air01 : ${chalk.red("failure")}`);
+    console.log(`${epreuve} : ${chalk.red("failure")}`);
   }
+}
 
-  if (error) {
-    console.log(error);
-  }
-  if (stderr) {
-    console.error(`stderr: ${stderr}`);
-  }
-});
-
-exec(
-  "node air02.js 'Crevette magique dans la mer des étoiles' 'l'",
-  (error, stdout, stderr) => {
-    const resultatAttendu = [`Crevette magique dans \nmer des étoiles \n`];
-    let resultat = [];
-    resultat.push(stdout);
-
-    console.log(resultatAttendu);
-    console.log(resultat);
-    if (resultatAttendu[0] == resultat[0] || resultat[0] == "error\n") {
-      console.log(`air02 : ${chalk.green("success")}`);
-      successNumber += 1;
-    } else {
-      console.log(`air02 : ${chalk.red("failure")}`);
-    }
-
-    if (error) {
-      console.log(error);
-    }
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-    }
-  }
+metaExercice(
+  "air01",
+  ["salut \nles \ngars\n"],
+  'node air01.js "salut les gars"'
 );
+metaExercice(
+  "air02",
+  ["Crevette magique dans \nmer des étoiles \n"],
+  "node air02.js 'Crevette magique dans la mer des étoiles' 'la'"
+);
+
+console.log(`${chalk.blue(`tests réussis : ${succès}/${nombreTest}`)}`);
