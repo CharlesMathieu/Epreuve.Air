@@ -23,7 +23,7 @@ fs.open = ouvrir un fichier
 fs.writeFile = remplacer le contenu d'un fichier
 fs.readFile = lire un fichier */
 
-////🔴 test air01.js 🔴////
+////🔴 meta exo 🔴////
 const { execSync } = require("child_process");
 const chalk = require("chalk");
 let succès = 0;
