@@ -37,6 +37,7 @@ function metaExercice(epreuve, résultat_attendu, arguments) {
   } else {
     console.log(`${epreuve} : ${chalk.red("failure")}`);
   }
+  //console.log(output);
 }
 
 metaExercice(
@@ -49,5 +50,50 @@ metaExercice(
   ["Crevette magique dans \nmer des étoiles \n"],
   "node air02.js 'Crevette magique dans la mer des étoiles' 'la'"
 );
+
+metaExercice(
+  "air03",
+  ["je test des trucs\n"],
+  "node air03.js 'je' 'test' 'des' 'trucs' ' '"
+);
+metaExercice("air04 1/2", ["5 \n"], "node air04.js 1 2 3 4 5 4 3 2 1");
+metaExercice(
+  "air04 2/2",
+  ["bonjour madame \n"],
+  "node air04.js monsieur bonjour madame monsieur"
+);
+metaExercice(
+  "air05",
+  ["Helo milady, bien ou quoi ?\n"],
+  "node air05.js 'Hello milady,   bien ou quoi ??'"
+);
+metaExercice("air06", ["3 4 5 6 7 \n"], "node air06.js 1 2 3 4 5 '+2'");
+metaExercice(
+  "air07",
+  ["Michel\n"],
+  "node air07.js 'Michel' 'Albert' 'Thérèse' 'Benoit' 't'"
+);
+metaExercice("air08", ["1 2 3 4 \n"], "node air08.js 1 3 4 2");
+metaExercice(
+  "air09",
+  ["10 15 20 25 30 35 \n"],
+  "node air09.js 10 20 30 fusion 15 25 35"
+);
+metaExercice(
+  "air010",
+  ["“Albert” “Thérèse” “Benoit” “Michel”\n"],
+  "node air10.js “Michel” “Albert” “Thérèse” “Benoit”"
+);
+metaExercice(
+  "air011",
+  ["Lecture de: exo.txt\nSalut, \nbienvenu dans ce fichier texte.\n\n"],
+  "node air11.js exo.txt"
+);
+metaExercice(
+  "air012",
+  [`     O\n    OOO\n   OOOOO\n  OOOOOOO\n OOOOOOOOO\n`],
+  "node air12.js O 5"
+);
+metaExercice("air013", ["1 2 3 4 5 6\n"], "node air13.js 6 5 4 3 2 1");
 
 console.log(`${chalk.blue(`tests réussis : ${succès}/${nombreTest}`)}`);
